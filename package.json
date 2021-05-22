@@ -1,7 +1,7 @@
 {
-  "name": "@zondax/ledger-polkadot",
+  "name": "@tetcoin/ledger-tetcoin",
   "version": "0.0.0",
-  "description": "JS / Node API for Kusama/Polkadot app running (Ledger Nano S/X)",
+  "description": "JS / Node API for Kusama/Tetcoin app running (Ledger Nano S/X)",
   "author": "Zondax GmbH",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
@@ -19,18 +19,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zondax/ledger-polkadot-js.git"
+    "url": "git+https://github.com/tetcoinjs/ledger-tetcoin-js.git"
   },
   "keywords": [
     "Ledger",
     "Javascript",
     "Kusama",
-    "Polkadot"
+    "Tetcoin"
   ],
   "bugs": {
-    "url": "https://github.com/Zondax/ledger-polkadot-js/issues"
+    "url": "https://github.com/tetcoinjs/ledger-tetcoin-js/issues"
   },
-  "homepage": "https://github.com/Zondax/ledger-polkadot-js",
+  "homepage": "https://github.com/tetcoinjs/ledger-tetcoin-js",
   "dependencies": {
     "@babel/runtime": "^7.13.10",
     "@ledgerhq/hw-transport": "^5.49.0",

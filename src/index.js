@@ -39,7 +39,7 @@ const INS = {
   ALLOWLIST_UPLOAD: 0x93,
 }
 
-class SubstrateApp {
+class TetcoreApp {
   constructor(transport, cla, slip0044) {
     if (!transport) {
       throw new Error('Transport has not been defined')
@@ -80,9 +80,9 @@ class SubstrateApp {
 
   static signGetChunks(slip0044, account, change, addressIndex, message) {
     const chunks = []
-    const bip44Path = SubstrateApp.serializePath(slip0044, account, change, addressIndex)
+    const bip44Path = TetcoreApp.serializePath(slip0044, account, change, addressIndex)
     chunks.push(bip44Path)
-    chunks.push(...SubstrateApp.GetChunks(message))
+    chunks.push(...TetcoreApp.GetChunks(message))
     return chunks
   }
 
@@ -145,7 +145,7 @@ class SubstrateApp {
   }
 
   async getAddress(account, change, addressIndex, requireConfirmation = false, scheme = SCHEME.ED25519) {
-    const bip44Path = SubstrateApp.serializePath(this.slip0044, account, change, addressIndex)
+    const bip44Path = TetcoreApp.serializePath(this.slip0044, account, change, addressIndex)
 
     let p1 = 0
     if (requireConfirmation) p1 = 1
@@ -199,7 +199,7 @@ class SubstrateApp {
   }
 
   async sign(account, change, addressIndex, message, scheme = SCHEME.ED25519) {
-    const chunks = SubstrateApp.signGetChunks(this.slip0044, account, change, addressIndex, message)
+    const chunks = TetcoreApp.signGetChunks(this.slip0044, account, change, addressIndex, message)
     return this.signSendChunk(1, chunks.length, chunks[0], scheme).then(async result => {
       for (let i = 1; i < chunks.length; i += 1) {
         // eslint-disable-next-line no-await-in-loop,no-param-reassign
@@ -303,7 +303,7 @@ class SubstrateApp {
   async uploadAllowlist(message) {
     const chunks = []
     chunks.push(Buffer.from([0]))
-    chunks.push(...SubstrateApp.GetChunks(message))
+    chunks.push(...TetcoreApp.GetChunks(message))
 
     return this.uploadSendChunk(1, chunks.length, chunks[0]).then(async result => {
       if (result.return_code !== ERROR_CODE.NoError) {
@@ -330,27 +330,27 @@ class SubstrateApp {
 }
 
 function newKusamaApp(transport) {
-  return new SubstrateApp(transport, CLA.KUSAMA, SLIP0044.KUSAMA)
+  return new TetcoreApp(transport, CLA.KUSAMA, SLIP0044.KUSAMA)
 }
 
-function newPolkadotApp(transport) {
-  return new SubstrateApp(transport, CLA.POLKADOT, SLIP0044.POLKADOT)
+function newTetcoinApp(transport) {
+  return new TetcoreApp(transport, CLA.TETCOIN, SLIP0044.TETCOIN)
 }
 
 function newPolymeshApp(transport) {
-  return new SubstrateApp(transport, CLA.POLYMESH, SLIP0044.POLYMESH)
+  return new TetcoreApp(transport, CLA.POLYMESH, SLIP0044.POLYMESH)
 }
 
 function newDockApp(transport) {
-  return new SubstrateApp(transport, CLA.DOCK, SLIP0044.DOCK)
+  return new TetcoreApp(transport, CLA.DOCK, SLIP0044.DOCK)
 }
 
 function newCentrifugeApp(transport) {
-  return new SubstrateApp(transport, CLA.CENTRIFUGE, SLIP0044.CENTRIFUGE)
+  return new TetcoreApp(transport, CLA.CENTRIFUGE, SLIP0044.CENTRIFUGE)
 }
 
 function newEdgewareApp(transport) {
-  return new SubstrateApp(transport, CLA.EDGEWARE, SLIP0044.EDGEWARE)
+  return new TetcoreApp(transport, CLA.EDGEWARE, SLIP0044.EDGEWARE)
 }
 
 function sha512(data) {
@@ -442,7 +442,7 @@ function hdKeyDerivation(mnemonic, password, slip0044, accountIndex, changeIndex
 module.exports = {
   hdKeyDerivation,
   newKusamaApp,
-  newPolkadotApp,
+  newTetcoinApp,
   newPolymeshApp,
   newDockApp,
   newCentrifugeApp,

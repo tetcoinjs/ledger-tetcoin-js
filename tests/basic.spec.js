@@ -26,9 +26,9 @@ test('Kusama non-hardened', () => {
   expect(output.address.toString('hex')).toEqual(expected_address)
 })
 
-test('Polkadot', () => {
+test('Tetcoin', () => {
   let m = 'equip will roof matter pink blind book anxiety banner elbow sun young'
-  let output = hdKeyDerivation(m, '', SLIP0044.POLKADOT, 0x80000000, 0x80000000, 0x80000000, SS58_ADDR_TYPE.POLKADOT)
+  let output = hdKeyDerivation(m, '', SLIP0044.TETCOIN, 0x80000000, 0x80000000, 0x80000000, SS58_ADDR_TYPE.TETCOIN)
   console.log(output)
 
   const expected_address = '166wVhuQsKFeb7bd1faydHgVvX1bZU2rUuY7FJmWApNz2fQY'

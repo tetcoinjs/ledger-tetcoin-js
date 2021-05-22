@@ -30,8 +30,8 @@ export interface ResponseSign extends ResponseBase {
   signature: Buffer
 }
 
-export interface SubstrateApp {
-  new (transport: Transport, CLA: number, slip0044: number): SubstrateApp
+export interface TetcoreApp {
+  new (transport: Transport, CLA: number, slip0044: number): TetcoreApp
 
   getVersion(): Promise<ResponseVersion>
 
@@ -55,11 +55,11 @@ export interface SubstrateApp {
   getAllowListHash(): Promise<ResponseAllowlistHash>
 }
 
-export type SubstrateAppCreator = (transport: Transport) => SubstrateApp
+export type TetcoreAppCreator = (transport: Transport) => TetcoreApp
 
-export const newKusamaApp: SubstrateAppCreator
-export const newPolkadotApp: SubstrateAppCreator
-export const newPolymeshApp: SubstrateAppCreator
-export const newDockApp: SubstrateAppCreator
-export const newCentrifugeApp: SubstrateAppCreator
-export const newEdgewareApp: SubstrateAppCreator
+export const newKusamaApp: TetcoreAppCreator
+export const newTetcoinApp: TetcoreAppCreator
+export const newPolymeshApp: TetcoreAppCreator
+export const newDockApp: TetcoreAppCreator
+export const newCentrifugeApp: TetcoreAppCreator
+export const newEdgewareApp: TetcoreAppCreator
